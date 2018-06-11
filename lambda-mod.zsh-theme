@@ -53,6 +53,7 @@ ZSH_THEME_GIT_PROMPT_STASHED="%{$fg_bold[white]%}:"
 
 # Format for git_prompt_ahead()
 ZSH_THEME_GIT_PROMPT_AHEAD=" %{$fg_bold[white]%}^"
+ZSH_THEME_GIT_PROMPT_BEHIND=" %{$fg_bold[white]%}v"
 
 
 # Format for git_prompt_long_sha() and git_prompt_short_sha()

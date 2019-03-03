@@ -9,14 +9,11 @@ if [[ "$USER" == "root" ]]; then USERCOLOR="red"; else USERCOLOR="yellow"; fi
 function check_git_prompt_info() {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         if [[ -z $(git_prompt_info 2> /dev/null) ]]; then
-            echo "%{$fg[blue]%}detached-head%{$reset_color%}) $(git_prompt_status)
-%{$fg[blue]%}%D{[%X]} %{$fg[yellow]%}→ "
+            echo "%{$fg[blue]%}detached-head%{$reset_color%}) $(git_prompt_status)"
         else
-            echo "$(git_prompt_info 2> /dev/null) $(git_prompt_status)
-%{$fg[blue]%}%D{[%X]} %{$fg_bold[cyan]%}→ "
+            echo "$(git_prompt_info 2> /dev/null) $(git_prompt_status)"
         fi
     else
-        echo "%{$fg[blue]%}%D{[%X]} %{$fg_bold[cyan]%}→ "
     fi
 }
 
@@ -28,10 +25,15 @@ function get_right_prompt() {
     fi
 }
 
+function get_time() {
+    echo "%{$fg[blue]%}%D{[%X]} %{$fg_bold[cyan]%}→ "
+}
+
 PROMPT=$'\n'$LAMBDA'\
  %{$fg_bold[$USERCOLOR]%}%n@%M\
  %{$fg_no_bold[magenta]%}[%3~]\
- $(check_git_prompt_info)\
+ $(check_git_prompt_info)
+$(get_time)\
 %{$reset_color%}'
 
 # RPROMPT='$(get_right_prompt)'

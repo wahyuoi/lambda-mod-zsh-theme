@@ -29,7 +29,7 @@ function get_time() {
     echo "%{$fg[green]%}%D{[%X]} %{$fg_bold[cyan]%}→ "
 }
 function get_kubectl_context() {
-    if [ -x $(command -v kubectl) ]; then
+    if [[ -x $(command -v kubectl) ]]; then
         local ctx=$(kubectl config current-context);
         echo "%{$fg_no_bold[white]%}[$ctx]%{$reset_color%} ";
     fi

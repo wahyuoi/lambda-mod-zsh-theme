@@ -26,11 +26,18 @@ function get_right_prompt() {
 }
 
 function get_time() {
-    echo "%{$fg[blue]%}%D{[%X]} %{$fg_bold[cyan]%}→ "
+    echo "%{$fg[green]%}%D{[%X]} %{$fg_bold[cyan]%}→ "
+}
+function get_kubectl_context() {
+    if [ -x $(command -v kubectl) ]; then
+        local ctx=$(kubectl config current-context);
+        echo "%{$fg_no_bold[white]%}[$ctx]%{$reset_color%} ";
+    fi
 }
 
 PROMPT=$'\n'$LAMBDA'\
  %{$fg_bold[$USERCOLOR]%}%n@%M\
+ $(get_kubectl_context)\
  %{$fg_no_bold[magenta]%}[%3~]\
  $(check_git_prompt_info)
 $(get_time)\
